@@ -1,0 +1,30 @@
+#map-container * {
+  margin: 0;
+  padding: 0;
+}
+
+#map-container {
+  transform-style: preserve-3d;
+  height: 70vh;
+  width: 22vh;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+}
+
+.gridContainer {
+  height: 22vh;
+  width: 22vh;
+  display: grid;
+  grid-gap: 0.5vh;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gridContainer > div {
+  height: calc(7vh - 2px);
+  width: calc(7vh - 2px);
+  border: 1px solid lightgray;
+}
+.gridContainer > div:hover {
+  background-color: rgba(255, 255, 255, 0.4666666667);
+}

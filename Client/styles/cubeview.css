@@ -1,0 +1,115 @@
+#view-container * {
+  margin: 0;
+  padding: 0;
+}
+
+#view-container {
+  height: 30vh;
+  width: 30vh;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: spin linear normal 60s infinite;
+          animation: spin linear normal 60s infinite;
+}
+#view-container > div:nth-child(n):nth-child(-n+9) {
+  transform: translateZ(-10vh);
+}
+#view-container > div:nth-child(n+10):nth-child(-n+18) {
+  transform: translateZ(0) translateY(-30vh);
+}
+#view-container > div:nth-child(n+19):nth-child(-n+27) {
+  transform: translateZ(10vh) translateY(-60vh);
+}
+
+.cube {
+  height: 10vh;
+  width: 10vh;
+  transform-style: preserve-3d;
+}
+
+.cube > div {
+  position: absolute;
+  height: calc(10vh - 2px);
+  width: calc(10vh - 2px);
+  border: 1px solid lightgray;
+}
+.cube > div:nth-of-type(1) {
+  transform: rotate3d(0, 0, 0, 90deg) translate3d(0, 0, 5vh);
+}
+.cube > div:nth-of-type(2) {
+  transform: rotate3d(0, 0, 0, 90deg) translate3d(0, 0, -5vh);
+}
+.cube > div:nth-of-type(3) {
+  transform: rotate3d(1, 0, 0, 90deg) translate3d(0, 0, 5vh);
+}
+.cube > div:nth-of-type(4) {
+  transform: rotate3d(1, 0, 0, 90deg) translate3d(0, 0, -5vh);
+}
+.cube > div:nth-of-type(5) {
+  transform: rotate3d(0, 1, 0, 90deg) translate3d(0, 0, 5vh);
+}
+.cube > div:nth-of-type(6) {
+  transform: rotate3d(0, 1, 0, 90deg) translate3d(0, 0, -5vh);
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotateY(45deg) rotateX(135deg) rotateZ(0deg);
+  }
+  33% {
+    transform: rotateY(405deg) rotateX(135deg) rotateZ(0deg);
+  }
+  66% {
+    transform: rotateY(405deg) rotateX(495deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateY(405deg) rotateX(495deg) rotateZ(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(45deg) rotateX(135deg) rotateZ(0deg);
+  }
+  33% {
+    transform: rotateY(405deg) rotateX(135deg) rotateZ(0deg);
+  }
+  66% {
+    transform: rotateY(405deg) rotateX(495deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateY(405deg) rotateX(495deg) rotateZ(360deg);
+  }
+}
+@-webkit-keyframes spinmedia {
+  0% {
+    transform: rotateY(45deg) rotateX(45deg) rotateZ(0deg);
+  }
+  33% {
+    transform: rotateY(405deg) rotateX(45deg) rotateZ(0deg);
+  }
+  66% {
+    transform: rotateX(405deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateY(405deg) rotateX(405deg) rotateZ(360deg);
+  }
+}
+@keyframes spinmedia {
+  0% {
+    transform: rotateY(45deg) rotateX(45deg) rotateZ(0deg);
+  }
+  33% {
+    transform: rotateY(405deg) rotateX(45deg) rotateZ(0deg);
+  }
+  66% {
+    transform: rotateX(405deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateY(405deg) rotateX(405deg) rotateZ(360deg);
+  }
+}
