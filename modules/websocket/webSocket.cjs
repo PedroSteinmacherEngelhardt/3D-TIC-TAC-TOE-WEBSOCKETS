@@ -29,10 +29,12 @@ wsServer.on('connection', function(socket){
         switch (type) {
             case 'join':
                 game = joinGame(socket,data)
+                if(game == null) {socket.send(JSON.stringify({ type: 'new-url', data: `/${uuidv4()}`}));break;}
                 gameBoard = game.gameBoard
                 socket.send(JSON.stringify({type: 'newgame', data: null}));
                 socket.send(JSON.stringify({type: 'update' , data: gameBoard}));
                 socket.send(JSON.stringify({ type: 'turn-change', data: game.turn}));
+                console.log(game.players.length)
                 break;
             
             case 'click':
@@ -66,7 +68,8 @@ wsServer.on('connection', function(socket){
     });
 
     socket.on('close',() =>{
-        game.players = game.players.filter((value) => value == socket)
+        if(game === null) return
+        game.players = game.players.filter((value) => value === socket)
         if(game.players.length == 0) games = games.filter((g) => g == game)
     })
 });
@@ -76,6 +79,7 @@ function joinGame(socket, url) {
         return g.id === url
     })
     
+    if(url == '/') return null
     if (game === undefined) return createNewGame(socket, url)
 
     if(!game.players.includes(socket)) {
@@ -94,7 +98,6 @@ function createNewGame(socket, url = uuidv4()) {
         winner : null
     }
     games.push(game)
-    socket.send(JSON.stringify({ type: 'new-url', data: url}));
     return game
 }
 

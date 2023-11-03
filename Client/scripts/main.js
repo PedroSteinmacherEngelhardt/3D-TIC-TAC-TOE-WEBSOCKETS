@@ -1,4 +1,4 @@
-const serverAddress = 'ws://localhost:5000';
+const serverAddress = 'ws://10.197.12.38:5000';
 const serverConnection = new WebSocket(serverAddress);
 
 var gridTiles = Array.from(document.querySelectorAll(".gridContainer>div"));
@@ -46,7 +46,7 @@ serverConnection.onmessage = function(message){
             turn.classList.add(cors[data])
             break;
         case 'new-url':
-            //window.location.pathname = data
+            window.location.pathname = data
             break;
     }
 }
